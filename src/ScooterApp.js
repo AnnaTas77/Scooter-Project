@@ -26,7 +26,7 @@ class ScooterApp {
     }
 
     if (
-      !(this.registeredUsers.hasOwnProperty(currentUserName)) &&
+      !this.registeredUsers.hasOwnProperty(currentUserName) &&
       newUser.age >= 18
     ) {
       this.registeredUsers[currentUserName] = newUser;
@@ -40,7 +40,14 @@ class ScooterApp {
   createScooter(station) {}
   dockScooter(scooter, station) {}
   rentScooter(scooter, user) {}
-  print() {}
+
+  print() {
+    console.log("Stations: ", this.stations);
+    console.log("Registered Users: ", this.registeredUsers);
+  }
 }
+// const scooterApp = new ScooterApp();
+// scooterApp.registerUser("Joe Bloggs", "test123", 21);
+// scooterApp.print();
 
 module.exports = ScooterApp;

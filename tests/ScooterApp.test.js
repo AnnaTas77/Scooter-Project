@@ -15,7 +15,7 @@ describe("registerUser method tests", () => {
 
   it("should throw an error if the user is younger than 18", () => {
     const scooterApp = new ScooterApp();
-    
+
     function tryToLogYoungerUser() {
       scooterApp.registerUser("Anna Tas", "test123", 16);
     }
@@ -35,6 +35,8 @@ describe("registerUser method tests", () => {
 });
 
 // log in
+
+describe("loginUser method tests", () => {});
 
 // log out
 
