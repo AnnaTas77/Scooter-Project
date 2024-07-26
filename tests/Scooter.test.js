@@ -62,7 +62,7 @@ describe("Scooter Rent Method", () => {
       scooter.rent(user1);
     }
 
-    expect(attemptRental).toThrow();
+    expect(attemptRental).toThrow("The scooter needs to charge.");
     expect(scooter.station).toBe("Battersea Power Station");
     expect(user1.loggedIn).toBe(false);
     expect(scooter.user).toBeNull();
@@ -76,16 +76,13 @@ describe("Scooter Rent Method", () => {
       scooter.rent(user1);
     }
 
-    expect(attemptRental).toThrow();
+    expect(attemptRental).toThrow("The scooter needs repair.");
     expect(scooter.station).toBe("Battersea Power Station");
     expect(user1.loggedIn).toBe(false);
     expect(scooter.user).toBeNull();
   });
 });
 
-
-describe('Scooter Dock Method', () => { 
-
-  test('should first', () => {  })
-
- })
+describe("Scooter Dock Method", () => {
+  test("should first", () => {});
+});
