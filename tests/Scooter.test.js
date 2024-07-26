@@ -84,5 +84,12 @@ describe("Scooter Rent Method", () => {
 });
 
 describe("Scooter Dock Method", () => {
-  test("should first", () => {});
+  test("should be able to return the scooter to a station", () => {
+    const scooter = new Scooter("Battersea Power Station");
+    const user1 = new User("sam123", 1234, 25);
+    scooter.rent(user1);
+    scooter.dock("London Bridge");
+    expect(scooter.station).toBe("London Bridge");
+    expect(scooter.user).toBeNull();
+  });
 });

@@ -22,7 +22,10 @@ class Scooter {
     }
   }
 
-  dock(station) {}
+  dock(station) {
+    this.station = station;
+    this.user = null;
+  }
 
   // BONUS
   // recharge() {}
