@@ -73,7 +73,23 @@ class ScooterApp {
     return newScooter;
   }
 
-  dockScooter(scooter, station) {}
+  dockScooter(scooter, station) {
+    if (!Object.hasOwn(this.stations, station)) {
+      throw new Error("No such station.");
+    }
+
+    const currentStationArray = this.stations[station];
+
+    currentStationArray.forEach((item) => {
+      if (item.serial === scooter.serial) {
+        throw new Error("Scooter already at station.");
+      }
+    });
+
+    scooter.station = station;
+    console.log("The scooter is docked.");
+  }
+
   rentScooter(scooter, user) {}
 
   print() {

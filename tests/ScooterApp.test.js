@@ -116,6 +116,40 @@ describe("createScooter method tests", () => {
     expect(createForNonExistingStation).toThrow("No such station.");
   });
 });
+
 // dock scooter
+
+describe("dockScooter method tests", () => {
+  test("should add the scooter to the station’s scooter list", () => {
+    const scooterApp = new ScooterApp();
+    const newScooter = scooterApp.createScooter("Piccadilly");
+
+    scooterApp.dockScooter(newScooter, "Victoria");
+
+    expect(newScooter.station).toBe("Victoria");
+  });
+
+  test("if the station does not exist, throws an error", () => {
+    const scooterApp = new ScooterApp();
+    const newScooter = scooterApp.createScooter("Piccadilly");
+
+    function dockForNonExistingStation() {
+      scooterApp.dockScooter(newScooter, "Manchester");
+    }
+
+    expect(dockForNonExistingStation).toThrow("No such station.");
+  });
+
+  test("if the scooter is already at this station, throws an error", () => {
+    const scooterApp = new ScooterApp();
+    const newScooter = scooterApp.createScooter("Piccadilly");
+
+    function tryToDockAtSameStation() {
+      scooterApp.dockScooter(newScooter, "Piccadilly");
+    }
+
+    expect(tryToDockAtSameStation).toThrow("Scooter already at station.");
+  });
+});
 
 // rent scooter
