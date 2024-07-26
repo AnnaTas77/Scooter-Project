@@ -14,7 +14,7 @@ class Scooter {
       this.station = null;
       this.user = user;
     } else {
-      throw new Error();
+      throw new Error('This scooter cannot be rented as it is broken or not charged.');
     }
   }
 
