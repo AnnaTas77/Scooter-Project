@@ -2,7 +2,7 @@ const { describe, expect, test, it } = require("@jest/globals");
 const User = require("../src/User");
 
 // User tests here
-describe("User property tests", () => {
+describe("User class - property tests", () => {
   // test username
   test("the username should be a string", () => {
     const user = new User("Joe Bloggs", "test123", 21);
@@ -11,19 +11,19 @@ describe("User property tests", () => {
   // test password
   test("the password should be a string", () => {
     const user = new User("Joe Bloggs", "test123", 21);
-    expect(typeof user.username).toBe("string");
+    expect(typeof user.password).toBe("string");
   });
 
   // test age
-  test("username should be a string", () => {
+  test("the age should be a number", () => {
     const user = new User("Joe Bloggs", "test123", 21);
-    expect(typeof user.username).toBe("string");
+    expect(typeof user.age).toBe("number");
   });
 });
 
-// test login
-describe("Testing User Login Method", () => {
-  test("should login the user when they provide a correct password", () => {
+// test login method
+describe("User Login Method", () => {
+  it("should login the user when they provide a correct password", () => {
     const user = new User("Joe Bloggs", "test123", 21);
 
     user.login("test123");
@@ -31,7 +31,7 @@ describe("Testing User Login Method", () => {
     expect(user.loggedIn).toBe(true);
   });
 
-  test("throws an error if the password is incorrect", () => {
+  it("throws an error if the provided password is incorrect", () => {
     const user = new User("Joe Bloggs", "password", 21);
 
     function tryLogin() {
@@ -43,3 +43,13 @@ describe("Testing User Login Method", () => {
 });
 
 // test logout
+describe("User Logout Method", () => {
+  it("should logout the user", () => {
+    const user = new User("Joe Bloggs", "test123", 21);
+
+    user.login("test123");
+    user.logout();
+
+    expect(user.loggedIn).toBe(false);
+  });
+});

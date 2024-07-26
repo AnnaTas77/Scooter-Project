@@ -19,6 +19,8 @@ class Scooter {
   }
 
   dock(station) {}
+
+  // BONUS
   // recharge() {}
   // requestRepair() {}
 }
