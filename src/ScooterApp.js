@@ -57,10 +57,22 @@ class ScooterApp {
     currentUser.logout();
     console.log("The user has logged out.");
 
-    return currentUser.loggedIn
+    return currentUser.loggedIn;
   }
 
-  createScooter(station) {}
+  createScooter(station) {
+    if (!this.stations.hasOwnProperty(station)) {
+      throw new Error("No such station.");
+    }
+
+    const newScooter = new Scooter(station);
+
+    this.stations[station].push(newScooter);
+
+    console.log("Created new scooter.");
+    return newScooter;
+  }
+
   dockScooter(scooter, station) {}
   rentScooter(scooter, user) {}
 
@@ -71,6 +83,7 @@ class ScooterApp {
 }
 // const scooterApp = new ScooterApp();
 // scooterApp.registerUser("Joe Bloggs", "test123", 21);
+// scooterApp.createScooter("Victoria");
 // scooterApp.print();
 
 module.exports = ScooterApp;

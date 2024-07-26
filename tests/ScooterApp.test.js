@@ -2,6 +2,7 @@ const { describe, expect, test, it } = require("@jest/globals");
 
 const User = require("../src/User");
 const ScooterApp = require("../src/ScooterApp");
+const Scooter = require("../src/Scooter");
 
 // ScooterApp tests here
 
@@ -90,6 +91,31 @@ describe("logoutUser method tests", () => {
   });
 });
 
-// rent scooter
+// create scooter
 
+describe("createScooter method tests", () => {
+  test("should create and return the new scooter", () => {
+    const scooterApp = new ScooterApp();
+    const testScooter = {
+      station: "Victoria",
+      user: null,
+      serial: 1,
+      charge: 100,
+      isBroken: false,
+    };
+    expect(scooterApp.createScooter("Victoria")).toEqual(testScooter);
+  });
+
+  test("if the station does not exist, throws an error", () => {
+    const scooterApp = new ScooterApp();
+
+    function createForNonExistingStation() {
+      scooterApp.createScooter("Manchester");
+    }
+
+    expect(createForNonExistingStation).toThrow("No such station.");
+  });
+});
 // dock scooter
+
+// rent scooter
