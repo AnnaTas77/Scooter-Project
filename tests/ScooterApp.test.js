@@ -69,6 +69,27 @@ describe("loginUser method tests", () => {
 
 // log out
 
+describe("logoutUser method tests", () => {
+  test("should locate the registered user and call its logout method", () => {
+    const scooterApp = new ScooterApp();
+    scooterApp.registerUser("Joe Bloggs", "test123", 21);
+    expect(scooterApp.logoutUser("Joe Bloggs")).toBe(false);
+  });
+
+  test("if the user cannot be located, throw no such user is logged in error", () => {
+    const scooterApp = new ScooterApp();
+    scooterApp.registerUser("Joe Bloggs", "test123", 21);
+
+    function attemptToLogoutWithWrongPassword() {
+      scooterApp.logoutUser("Harry Potter");
+    }
+
+    expect(attemptToLogoutWithWrongPassword).toThrow(
+      "No such user is logged in."
+    );
+  });
+});
+
 // rent scooter
 
 // dock scooter

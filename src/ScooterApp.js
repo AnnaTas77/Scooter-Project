@@ -40,22 +40,26 @@ class ScooterApp {
     if (!currentUser) {
       throw new Error("The username is incorrect or this user does not exist.");
     }
-
-    const user1 = new User(
-      currentUser.username,
-      currentUser.password,
-      currentUser.age
-    );
-
     if (currentUser.password !== password) {
       throw new Error("Incorrect password.");
     }
 
-    user1.login(password);
-    return user1.loggedIn;
+    currentUser.login(password);
+    return currentUser.loggedIn;
   }
 
-  logoutUser(username) {}
+  logoutUser(username) {
+    const currentUser = this.registeredUsers[username];
+    if (!currentUser) {
+      throw new Error("No such user is logged in.");
+    }
+
+    currentUser.logout();
+    console.log("The user has logged out.");
+
+    return currentUser.loggedIn
+  }
+
   createScooter(station) {}
   dockScooter(scooter, station) {}
   rentScooter(scooter, user) {}
