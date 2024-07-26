@@ -36,7 +36,36 @@ describe("registerUser method tests", () => {
 
 // log in
 
-describe("loginUser method tests", () => {});
+describe("loginUser method tests", () => {
+  test("should locate the registered user by name and call its login method", () => {
+    const scooterApp = new ScooterApp();
+    scooterApp.registerUser("Joe Bloggs", "test123", 21);
+    expect(scooterApp.loginUser("Joe Bloggs", "test123")).toBe(true);
+  });
+
+  test("if the user cannot be located, then throw an error: The username is incorrect or this user does not exist.", () => {
+    const scooterApp = new ScooterApp();
+
+    function attemptToLoginUnregisteredUser() {
+      scooterApp.loginUser("Alice Green", "test123");
+    }
+
+    expect(attemptToLoginUnregisteredUser).toThrow(
+      "The username is incorrect or this user does not exist."
+    );
+  });
+
+  test("if the password is incorrect, then throw an error: Incorrect password.", () => {
+    const scooterApp = new ScooterApp();
+    scooterApp.registerUser("Joe Bloggs", "test123", 21);
+
+    function attemptToLoginWithWrongPassword() {
+      scooterApp.loginUser("Joe Bloggs", "wrongPassword");
+    }
+
+    expect(attemptToLoginWithWrongPassword).toThrow("Incorrect password.");
+  });
+});
 
 // log out
 
