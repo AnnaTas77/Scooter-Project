@@ -153,3 +153,37 @@ describe("dockScooter method tests", () => {
 });
 
 // rent scooter
+
+describe("rentScooter method tests", () => {
+  it("should locate the given scooter at one of the stations, and remove it from that station", () => {
+    const scooterApp = new ScooterApp();
+    const newScooter = scooterApp.createScooter("Piccadilly");
+    const newUser = new User("Jane Doe", "test123", 21);
+
+    const currentScooterStation = newScooter.station;
+    const allStations = scooterApp.stations;
+
+    scooterApp.rentScooter(newScooter, newUser);
+
+    expect(newScooter.station).toBeNull();
+    expect(allStations[currentScooterStation]).toEqual([]);
+  });
+
+  it("if the scooter is already rented, it should throw an error", () => {
+    const scooterApp = new ScooterApp();
+    const newScooter = scooterApp.createScooter("Piccadilly");
+    const user1 = new User("Jane Doe", "test123", 21);
+    const user2 = new User("Jane Doe", "test123", 21);
+
+    const currentScooterStation = newScooter.station;
+    const allStations = scooterApp.stations;
+
+    scooterApp.rentScooter(newScooter, user1);
+
+    function tryToRentARentedScooter() {
+      scooterApp.rentScooter(newScooter, user2);
+    }
+
+    expect(tryToRentARentedScooter).toThrow("Scooter already rented.");
+  });
+});

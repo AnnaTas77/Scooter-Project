@@ -90,7 +90,27 @@ class ScooterApp {
     console.log("The scooter is docked.");
   }
 
-  rentScooter(scooter, user) {}
+  //   Locate the given scooter at one of the stations, and remove it from that station. Rent it to the user. Log scooter is rented to the console.
+  // If the scooter is already rented, throw the error scooter already rented.
+  rentScooter(scooter, user) {
+    if (scooter.user !== null) {
+      console.log("here");
+      throw new Error("Scooter already rented.");
+    }
+
+    const locatedScooterArray = this.stations[scooter.station];
+
+    locatedScooterArray.forEach((scooterEl, index) => {
+      if (scooterEl.serial === scooter.serial) {
+        locatedScooterArray.splice(index, 1);
+      }
+    });
+
+    scooter.station = null;
+    scooter.user = user;
+
+    console.log("Scooter is rented.");
+  }
 
   print() {
     console.log("Stations: ", this.stations);
